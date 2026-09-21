@@ -1,0 +1,71 @@
+,pergunta,acuracia,estado,resposta
+0,Quais carregadores estão disponíveis neste momento?,0.75,adequada,"Olá. Sou a EnergyAI e estou aqui para auxiliar você.
+
+Com base no monitoramento atual da rede, aqui estão os pontos com disponibilidade imediata para o carregamento do seu veículo:
+
+*   **Posto Shopping Tamboré:** Este é o local com a maior disponibilidade, apresentando todos os carregadores operacionais e livres para uso.
+*   **Posto do Aeroporto:** Encontra-se com 50% de sua capacidade disponível.
+*   **Posto Ipiranga:** Possui 2 de seus 3 carregadores livres no momento.
+
+**Atenção:** O **Posto do Villa Lobos** encontra-se atualmente com todos os carregadores ocupados, portanto, não é recomendado que se dirija a este local caso necessite de recarga imediata.
+
+Recomendo priorizar o Posto Shopping Tamboré para garantir que você não encontre filas ou esperas. Posso ajudar com mais alguma informação sobre a localização ou o tipo de carregador disponível nesses postos?"
+1,"Minha recarga foi interrompida, o que aconteceu?",0.8,adequada,"Olá. Eu sou a EnergyAI e sinto muito pelo transtorno causado pela interrupção da sua recarga.
+
+Como não tenho acesso direto aos logs individuais da sua sessão específica no momento, não é possível apontar a causa exata sem uma análise técnica detalhada. No entanto, interrupções inesperadas geralmente ocorrem por um dos seguintes motivos:
+
+1.  **Variação na rede elétrica:** Oscilações de tensão podem levar o carregador a interromper a sessão por questões de segurança.
+2.  **Falha na comunicação:** Se o cabo sofrer uma desconexão física parcial ou se houver perda de sinal do protocolo OCPP, o sistema interrompe o fornecimento para evitar danos.
+3.  **Configuração do veículo:** Alguns sistemas de gerenciamento de bateria do próprio veículo podem solicitar o encerramento da carga por atingir o limite programado ou superaquecimento.
+4.  **Sobrecarga ou limite de tempo:** Em locais com alta demanda, o sistema de gerenciamento de energia pode priorizar o balanceamento da carga, o que pode resultar em desligamentos preventivos.
+
+**Recomendações de segurança e próximos passos:**
+
+*   **Verificação física:** Certifique-se de que o cabo está firmemente conectado ao seu veículo e ao carregador. Verifique se não há sinais de danos físicos no plugue ou no cabo.
+*   **Reinicialização:** Tente iniciar uma nova sessão. Se o erro persistir, o equipamento pode estar passando por uma falha técnica.
+*   **Alternativa:** Caso o posto em que você se encontra apresente instabilidade recorrente, recomendo que utilize o **Posto Shopping Tamboré**, que no momento apresenta 100% de disponibilidade e alta confiabilidade operacional. Evite, por ora, o Posto Villa Lobos, que se encontra operando em carga máxima, o que pode gerar gargalos.
+
+Se você puder me informar o local exato (posto) e o horário da interrupção, posso registrar este evento em nosso sistema para que nossa equipe de manutenção técnica verifique o histórico do carregador específico. 
+
+Como está o status das luzes indicadoras no painel do carregador agora? Isso ajudará no diagnóstico."
+2,Como iniciar uma sessão de carregamento?,0.6,parcialmente adequada,"Olá. Sou a EnergyAI, assistente de gerenciamento da rede de carregadores GoodWe.
+
+Para iniciar uma sessão de carregamento em nossos postos, siga estas etapas padrão:
+
+1. **Estacionamento:** Posicione seu veículo de forma que o cabo de carregamento alcance a porta de carga do carro sem tensionar o fio.
+2. **Conexão:** Insira o conector do carregador na entrada do seu veículo. Certifique-se de que o encaixe esteja firme e travado.
+3. **Autenticação:** No painel do carregador ou no aplicativo indicado no posto, selecione o carregador correspondente e inicie a sessão (via cartão RFID, QR Code ou interface do próprio equipamento).
+4. **Verificação:** Aguarde a luz indicadora do carregador mudar para a cor que sinaliza o início do fluxo de energia (geralmente azul ou verde, dependendo do modelo). Verifique no painel do seu veículo se o processo de carregamento foi iniciado.
+
+**Observações importantes:**
+* Por questões de segurança, nunca force a conexão do cabo.
+* Caso o carregador apresente uma luz vermelha ou mensagem de erro no painel, não tente forçar o início. Entre em contato com o suporte local para diagnóstico.
+* Considerando a disponibilidade atual, recomendo utilizar o **Posto Shopping Tamboré** ou o **Posto Ipiranga**, que apresentam as melhores condições operacionais no momento. Evite postos com alta demanda, como o do Villa Lobos, para garantir que você tenha um suporte estável durante a carga.
+
+Caso encontre dificuldades técnicas durante esses passos, informe-me o código de erro exibido na tela para que eu possa realizar o diagnóstico."
+3,Meu pagamento foi feito mas o carregador não funciona?,0.8,adequada,"Olá. Compreendo a sua frustração com essa situação. Eu sou a EnergyAI e serei responsável por orientá-lo nesta ocorrência.
+
+Como sistema de monitoramento, informo que não possuo acesso direto aos fluxos financeiros ou ao processamento de pagamentos. No entanto, para resolver o problema de o carregador não iniciar a carga após o processamento, sugiro que siga estes passos de segurança e verificação:
+
+1. **Verificação física:** Certifique-se de que o cabo de carregamento esteja conectado firmemente tanto ao carregador quanto ao seu veículo. Um encaixe incompleto pode impedir o início da carga por segurança.
+2. **Reinicialização da tentativa:** Se possível, retire o cabo, aguarde 30 segundos e reinicie o processo de conexão seguindo as instruções na tela do posto.
+3. **Contato de suporte:** Como o pagamento foi processado, é necessário que você entre em contato com o suporte técnico local do posto específico onde se encontra. Eles possuem as ferramentas necessárias para liberar a carga remotamente ou realizar o estorno do valor, caso o equipamento apresente falha técnica.
+
+**Informação adicional:**
+Caso não consiga resolver o problema nesta unidade, informo que o **Posto Shopping Tamboré** e o **Posto do Aeroporto** estão com disponibilidade operacional no momento e operando normalmente.
+
+Por favor, mantenha o comprovante de pagamento à disposição para facilitar o atendimento junto à equipe de suporte do posto. Registrarei este incidente em nosso sistema para análise técnica preventiva."
+4,"O carregador não reconheceu meu veículo, o que eu faço?",0.5,parcialmente adequada,"Olá. Compreendo que está enfrentando dificuldades para iniciar o carregamento. Eu sou a EnergyAI e estou aqui para auxiliar no diagnóstico do sistema.
+
+Para solucionar essa falha de reconhecimento entre o carregador e o seu veículo, por favor, siga os passos abaixo:
+
+1. **Verificação física do cabo:** Certifique-se de que o conector está totalmente inserido na porta de carga do veículo e que a trava de segurança foi acionada corretamente. Um encaixe parcial é a causa mais comum desse problema.
+2. **Ciclo de conexão:** Desconecte o cabo, aguarde cerca de 10 segundos e tente realizar o procedimento de conexão novamente, garantindo que o comando de início seja feito conforme as instruções na tela do carregador ou no aplicativo.
+3. **Status do veículo:** Verifique se o seu veículo possui alguma configuração de ""agendamento de carga"" ou ""limite de carga"" ativa, que pode estar impedindo o início imediato do processo.
+4. **Inspeção visual:** Verifique se não há obstruções, sujeira ou danos visíveis nos pinos do cabo ou na entrada do veículo que possam comprometer a comunicação (protocolo de handshake).
+
+**Observação importante:** Como sou uma inteligência artificial voltada ao monitoramento da infraestrutura, não consigo intervir fisicamente no hardware ou nos protocolos específicos do seu veículo. Caso o problema persista após essas tentativas, recomendo que se desloque para um dos nossos postos com alta disponibilidade, como o **Posto Shopping Tamboré** ou o **Posto Ipiranga**, onde a infraestrutura está operando de forma estável.
+
+Se o problema for recorrente em outros pontos, sugiro que entre em contato com o suporte técnico da montadora do seu veículo para verificar o sistema de carregamento embarcado.
+
+Mantenho este evento registrado em nosso sistema para análise técnica. Deseja que eu forneça a localização de algum dos postos recomendados?"

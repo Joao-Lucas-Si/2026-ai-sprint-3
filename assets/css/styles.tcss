@@ -1,0 +1,44 @@
+Static{
+    text-wrap: wrap;
+}
+
+.mensagens-container {
+    height: 1fr;
+}
+
+.mensagem-container-chat {
+    border: round $primary;
+}
+
+.mensagem-container {
+    height: auto;
+    width: 45%;
+    padding: 1;
+}
+
+.mensagem-container-usuario {
+    border: round $secondary;
+}
+
+.mensagem-usuario {
+    
+    align: right middle;
+    height: auto;
+}
+
+.mensagem-chat {
+    height: auto;
+ 
+}
+
+.input > Input {
+    width: 1fr;
+}
+
+.input > Button {
+    width: 10%;
+}
+
+.input {
+    height: auto;
+}

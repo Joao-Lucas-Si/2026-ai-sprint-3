@@ -1,0 +1,11 @@
+requests
+textual
+pydantic
+google-genai
+pandas
+python-dotenv
+langchain
+langchain-ollama
+langchain-google-genai
+langchain_classic
+tiktoken
