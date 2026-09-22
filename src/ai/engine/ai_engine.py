@@ -24,7 +24,7 @@ class AiEngine:
         classificacao = self.client.chamarDiretamente(
             prompt,
             
-            system="assets/prompts/v1/analise_pergunta.md",
+            system="analise_pergunta",
             formato=AnaliseResposta.model_json_schema(),
         )
         postosStr = "\n".join(
@@ -45,7 +45,8 @@ class AiEngine:
 
         analise = self.client.chamarDiretamente(
             prompt_relatorio,
-            system="assets/prompts/v1/relatorio.md",
+            system="relatorio",
+            historico=self.memory.chat_message(),
             dados={"postosStr": postosStr, "prompt": prompt},
             formato=AnalisePostos.model_json_schema()
         )
@@ -61,7 +62,7 @@ class AiEngine:
         """
         resposta_final = self.client.chamarDiretamente(
             prompt_final,
-            system="assets/prompts/v1/system_prompt.md",
+            system="system_prompt",
             historico=self.memory.chat_message(),
             dados={
                 "classificacao": classificacao.replace("{", "\\{{").replace("}", "\\}}"),

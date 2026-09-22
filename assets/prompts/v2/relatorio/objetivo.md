@@ -1,4 +1,3 @@
-# Objetivo
 - gerenciar postos de carregamento
 - indicador de desempenho
 - distribuição dos postos

@@ -1,0 +1,66 @@
+,pergunta,acuracia,estado,resposta
+0,Quais carregadores estão disponíveis neste momento?,0.25,inadequada,"Olá! Sou o EnergyAI. Com base no monitoramento atual do nosso sistema, os seguintes carregadores estão disponíveis e operacionais para uso imediato:
+
+*   **Posto Shopping Tamboré:** Carregadores 4 e 20.
+*   **Posto Ipiranga:** Carregadores 4, 19 e 57.
+*   **Posto do Villa Lobos:** Carregador 70 (este equipamento possui a maior capacidade de carga da nossa rede atual).
+
+Recomendo que se dirija a um desses pontos para realizar o seu carregamento. Caso precise de assistência adicional ou encontre qualquer dificuldade ao chegar em um desses locais, não hesite em solicitar o suporte técnico humano."
+1,"Minha recarga foi interrompida, o que aconteceu?",0.2,inadequada,"Olá! Sou o EnergyAI. Sinto muito que sua recarga tenha sido interrompida. Vou te ajudar a entender o que pode ter ocorrido.
+
+**Identificação do problema:** Interrupção inesperada do fluxo de energia durante a sessão de carregamento.
+**Gravidade:** Moderada.
+
+**Possíveis causas (hipóteses):**
+1. **Falha de comunicação (Protocolo OCPP):** Pode ter ocorrido uma perda momentânea de sinal entre o carregador e o sistema de gestão ou entre o carregador e o seu veículo.
+2. **Proteção de segurança:** O carregador pode ter interrompido a carga por detectar uma variação na temperatura ou uma oscilação na rede elétrica, visando proteger tanto o seu veículo quanto o equipamento.
+3. **Desconexão física:** O cabo pode ter sofrido uma leve movimentação que interrompeu o sinal de travamento (o ""handshake"" entre o carro e o carregador).
+
+**Sugestões de solução em ordem de menor risco:**
+1. **Verifique o cabo:** Certifique-se de que o cabo está bem encaixado e travado no veículo e no carregador.
+2. **Reinicie a sessão:** Tente encerrar a sessão atual pelo aplicativo e iniciar uma nova.
+3. **Troque de carregador:** Caso o erro persista, recomendo utilizar um dos nossos carregadores"
+2,Como iniciar uma sessão de carregamento?,0.8,adequada,"Olá! Sou o EnergyAI. Para iniciar uma sessão de carregamento de forma segura e eficiente, siga este procedimento padrão:
+
+1. **Verificação Inicial:** Certifique-se de que o seu veículo está desligado e posicionado corretamente em frente ao carregador.
+2. **Conexão:** Retire o cabo do carregador e conecte-o firmemente à porta de carga do seu veículo. Você deverá ouvir um clique de travamento mecânico.
+3. **Autenticação:** Utilize o aplicativo ou o cartão RFID autorizado no leitor do carregador para iniciar a sessão. O sistema irá validar a conexão e o protocolo de comunicação (OCPP).
+4. **Monitoramento:** Aguarde a luz indicadora do carregador mudar para o status de ""em carga"" (geralmente indicada pela cor azul ou verde, dependendo do modelo). Acompanhe o progresso pelo painel do carregador ou pelo seu aplicativo.
+
+**Dicas importantes:**
+*   Certifique-se de que o cabo não esteja tensionado ou dobrado.
+*   Caso o carregador não reconheça o comando, verifique se o cabo está totalmente inserido.
+
+Para realizar este procedimento agora, recomendo utilizar um dos nossos postos com disponibilidade imediata:
+*   **Posto do Villa Lobos (Carregador 70):** Alta capacidade de 50kW.
+*   **Posto"
+3,Meu pagamento foi feito mas o carregador não funciona?,0.4,parcialmente adequada,"Olá! Sou o EnergyAI. Sinto muito pelo transtorno. Entendo que você já realizou o pagamento e o carregador não iniciou o fornecimento de energia, o que é uma situação frustrante.
+
+**Identificação do problema:** Falha na ativação da sessão de carga após a confirmação de pagamento.
+**Gravidade:** Moderada.
+
+**Possíveis causas (hipóteses):**
+1. **Erro de Sincronização:** O sinal de pagamento pode ter sido processado pelo sistema financeiro, mas não foi validado pelo controlador do carregador (OCPP).
+2. **Falha de Comunicação:** O carregador pode ter entrado em modo de espera ou erro interno logo após a autenticação.
+3. **Bloqueio de Segurança:** O carregador pode ter detectado uma falha no isolamento ou na continuidade do aterramento antes de liberar a corrente.
+
+**Sugestões de solução em ordem de menor risco:**
+1. **Aguarde 2 minutos:** Às vezes, o sistema leva alguns instantes para processar a autorização e liberar a trava.
+2. **Reinicie o processo:** Se possível, cancele a sessão pelo aplicativo e tente iniciar novamente.
+3. **Verifique o painel:** Observe se há alguma luz de erro (geralmente vermelha ou piscante) no carregador.
+
+**Atenção:** Como"
+4,"O carregador não reconheceu meu veículo, o que eu faço?",0.25,inadequada,"Olá! Sou o EnergyAI. Sinto muito que esteja enfrentando dificuldades para conectar seu veículo. Vou te orientar sobre como proceder para solucionar essa falha de comunicação.
+
+**Identificação do problema:** Falha no ""handshake"" (reconhecimento inicial) entre o carregador e o veículo.
+**Gravidade:** Moderada.
+
+**Possíveis causas (hipóteses):**
+1. **Conexão física incompleta:** O cabo pode não estar inserido com a pressão necessária para que os pinos de sinal façam contato.
+2. **Falha de protocolo:** O sistema de comunicação entre o carregador e o veículo pode ter sofrido uma interrupção momentânea.
+3. **Bloqueio de segurança:** O carregador detectou uma irregularidade no aterramento ou na voltagem do veículo e, por segurança, impediu o início da carga.
+
+**Sugestões de solução (ordem de menor risco):**
+1. **Desconecte e reconecte:** Remova o cabo do veículo e do carregador, aguarde 10 segundos e insira-o novamente com firmeza, garantindo que o travamento mecânico ocorra.
+2. **Verifique o painel:** Observe se o carregador exibe alguma mensagem de erro ou luz indicativa de falha.
+3. **Reinicie a sessão:** Tente iniciar o processo de autenticação"

@@ -3,7 +3,7 @@
 
 # Regras
 ## Objetivo
-{objectivo}
+{objetivo}
 
 {regras}
 

@@ -1,4 +1,3 @@
-# Objetivo
 - identificar a verdadeira intenção da mensagem
 - identificar possiveis intenções secundarias, quando existirem 
 - Extrair dados relevantes 

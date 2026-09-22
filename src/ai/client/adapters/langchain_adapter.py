@@ -18,11 +18,15 @@ class LangChainAdapter(AiAdapter):
         self.model = ChatGoogleGenerativeAI(
             model=model,
             api_key=os.getenv("CHAVE_GEMINI"),
+            
         )
         self.memory: BaseChatMemory = ConversationTokenBufferMemory(llm=self.model, max_token_limit=400)
    
-    def chamarDiretamente(self, prompt: str,historico: list[Mensagem] = [],  system: system_prompts = "assets/prompts/v1/system_prompt.md", formato: dict | None = None, dados: dict = {}) -> str:
+    def chamarDiretamente(self, prompt: str,historico: list[Mensagem] = [],  system: system_prompts = "system_prompt", formato: dict | None = None, dados: dict = {}) -> str:
         
+        self.model.max_output_tokens = 300
+        self.model.temperature = 0.4
+        self.model.top_p = 0.5 
         if formato:
             self.model.response_schema = formato
             self.model.response_mime_type = "application/json"
@@ -33,7 +37,7 @@ class LangChainAdapter(AiAdapter):
         # return base
 
         template = ChatPromptTemplate( [
-            ("system", open(system).read()),
+            ("system", self.base_system_prompt),
             #  MessagesPlaceholder("history"),
             *[( "ai" if mensagem.role == Papel.CHAT else "human", mensagem.conteudo) for mensagem in historico],
             ("human", prompt)
@@ -46,7 +50,7 @@ class LangChainAdapter(AiAdapter):
         
         # if usar_memoria:
         #     chain = RunnableWithMessageHistory(chain, get_session_history=  lambda : self.memory.chat_memory, input_messages_key="prompt", history_messages_key="history" )
-        input = {} | dados
+        input = self.obter_system_prompt_params(system) | dados
         # print(chain)
         message = chain.invoke(input)
         # if usar_memoria:

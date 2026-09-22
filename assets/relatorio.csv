@@ -1,72 +1,67 @@
 ,pergunta,acuracia,estado,resposta
-0,Quais carregadores estão disponíveis neste momento?,0.5,parcialmente adequada,"Olá! Sou o EnergyAI, assistente de gerenciamento dos postos GoodWe. 
+0,Quais carregadores estão disponíveis neste momento?,0.75,adequada,"Olá. Como assistente da EnergyAI, verifiquei o status da nossa rede de carregadores para você.
 
-No momento, temos os seguintes carregadores livres e operacionais disponíveis para uso:
+No momento, possuímos 13 dos 15 carregadores monitorados disponíveis para uso. Recomendo os seguintes postos por apresentarem capacidade plena (100% de disponibilidade):
 
-* **Posto Shopping Tamboré:** Carregadores 5, 12 e 36
-* **Posto do Aeroporto:** Carregador 29
-* **Posto Ipiranga:** Carregadores 1, 2 e 11
+*   **Posto Shopping Tamboré:** Todos os 4 carregadores estão livres.
+*   **Posto Ipiranga:** Todos os 4 carregadores estão livres.
 
-Caso precise de orientações para iniciar a recarga em algum deles, estou à disposição."
-1,"Minha recarga foi interrompida, o que aconteceu?",0.2,inadequada,"Olá! Analisei o sistema para verificar o ocorrido com a sua recarga. 
+Os postos do **Aeroporto** e do **Villa Lobos** também possuem carregadores liberados, porém, em cada um deles, há um equipamento ocupado no momento.
 
-Quando uma recarga é interrompida inesperadamente, as causas mais comuns incluem:
-1. **Interrupção na comunicação entre o veículo e o carregador** (falha no protocolo OCPP ou cabo mal conectado).
-2. **Ativação de um mecanismo de segurança** devido a oscilações na rede elétrica ou variação de temperatura.
-3. **Conclusão do ciclo de pagamento** ou falha na autenticação da sessão.
+Se precisar de mais alguma informação ou auxílio com algum desses pontos, estou à disposição."
+1,"Minha recarga foi interrompida, o que aconteceu?",0.6,parcialmente adequada,"Olá. Compreendo a sua situação. Como assistente do sistema, verifiquei o status operacional e buscarei esclarecer o ocorrido.
 
-**Como proceder:**
-1. Verifique se o cabo de conexão está firmemente encaixado tanto no veículo quanto no carregador.
-2. Certifique-se de que o painel do carregador indica liberação de segurança.
-3. Tente iniciar uma nova sessão pelo aplicativo.
+A interrupção de uma recarga pode ocorrer por diversos fatores técnicos ou operacionais. Embora não possamos determinar a causa exata sem uma análise detalhada da sessão específica, as causas mais comuns incluem:
 
-Caso o problema persista, por favor, utilize um de nossos postos com alta disponibilidade recomendados no momento, como o **Posto Shopping Tamboré** ou o **Posto Ipiranga**. 
+1.  **Erro de comunicação:** Uma falha momentânea no protocolo de ""handshake"" (comunicação inicial) entre o veículo e o carregador.
+2.  **Limite de tempo ou carga:** O término do ciclo de recarga programado ou o limite de energia estabelecido na sessão.
+3.  **Proteção térmica ou elétrica:** Uma interrupção preventiva do próprio sistema para garantir a segurança da rede e do seu veículo caso tenha sido detectada alguma variação fora dos parâmetros normais.
 
-Estou registrando este evento para análise técnica e monitoramento da rede. Como posso ajudar mais?"
-2,Como iniciar uma sessão de carregamento?,0.4,parcialmente adequada,"Olá! Para iniciar uma sessão de carregamento em nossos postos GoodWe, siga os passos abaixo de forma simples e segura:
+**Orientações para solução:**
 
-1. **Conecte o veículo:** Insira o conector do carregador (AC ou DC) firmemente na entrada do seu veículo. Certifique-se de que o encaixe esteja completo para garantir a segurança elétrica.
-2. **Autenticação:** Aproxime o seu cartão RFID leitor do posto ou utilize o aplicativo oficial GoodWe no seu smartphone para escanear o QR code localizado no carregador e iniciar a sessão.
-3. **Confirmação:** Aguarde o painel do carregador indicar que a comunicação foi estabelecida (via protocolo OCPP) e que o fluxo de energia foi liberado.
+*   **Verifique o painel do veículo:** Confirme se existe alguma mensagem de erro exibida no painel do próprio carro.
+*   **Procedimento de reconexão:** Desconecte o cabo, aguarde cerca de 30 segundos e inicie um novo ciclo de recarga.
+*   **Troca de carregador:** Caso a falha persista, sugiro que tente utilizar um dos carregadores listados como disponíveis. Atualmente, os carregadores **16, 41, 62, 37, 2, 94, 3, 6, 45, 72, 66 e 31** encontram-se operacionais e prontos para uso.
 
-Lembrando que os nossos postos no **Shopping Tamboré**, **Aeroporto** e **Ipiranga** estão com alta disponibilidade e totalmente operacionais caso você esteja se deslocando agora.
+Por questões de segurança, evite forçar repetidamente a conexão se o erro persistir. Caso o problema continue em diferentes postos, recomendo que verifique a integridade do cabo de carregamento do seu veículo.
 
-Se precisar de auxílio com alguma falha durante o processo, estou à disposição para ajudar!"
-3,Meu pagamento foi feito mas o carregador não funciona?,0.4,parcialmente adequada,"Olá! Sinto pelo transtorno. 
+Estou monitorando o sistema. Se precisar de assistência adicional ou identificar um padrão na falha, por favor, me informe."
+2,Como iniciar uma sessão de carregamento?,1.0,adequada,"Para iniciar uma sessão de carregamento em um dos nossos postos, siga este procedimento padrão:
 
-Identifiquei uma falha na qual a transação financeira foi concluída, mas o fluxo de energia não foi liberado pelo carregador. 
+1.  **Verifique a disponibilidade:** Certifique-se de que o carregador escolhido esteja com a luz indicativa de ""Disponível"" (geralmente na cor verde). No momento, os carregadores recomendados são: **62, 47, 81, 92, 35, 44 e 89**.
+2.  **Conexão Física:** Estacione seu veículo próximo ao carregador e conecte o cabo de recarga firmemente à porta do seu veículo. Certifique-se de que o encaixe esteja completo e sem folgas.
+3.  **Interface do Usuário:** Dirija-se à tela (totem) do carregador. Siga as instruções apresentadas no visor para selecionar a potência desejada ou identificar o seu perfil de usuário/aplicativo, caso seja solicitado pelo sistema.
+4.  **Início da Carga:** Após a autenticação e verificação da conexão, o sistema iniciará o fluxo de energia automaticamente. O painel do carregador exibirá o status ""Carregando"" e, em alguns modelos, as informações de tempo estimado e porcentagem da bateria.
 
-**Gravidade:** Média (falha no sistema de pagamento/liberação via IoT).
+**Orientações importantes:**
+*   **Segurança:** Caso note qualquer dano visível no cabo ou no conector, não tente realizar a conexão e escolha outro equipamento.
+*   **Acompanhamento:** Acompanhe o início da carga pelo painel do seu veículo ou pela tela do posto.
+*   **Monitoramento:** Eu realizo o monitoramento do status dos carregadores, mas a iniciação da sessão é um procedimento manual realizado diretamente na interface do posto.
 
-**Possíveis causas:**
-1. Atraso na comunicação entre o sistema de pagamento e o protocolo OCPP do carregador.
-2. Falha temporária de conexão com a rede IoT no posto atual.
-3. Travamento momentâneo na autenticação da sessão.
+Se encontrar qualquer erro no visor durante esse processo, por favor, me informe o código ou a mensagem exibida para que eu possa diagnosticar o ocorrido."
+3,Meu pagamento foi feito mas o carregador não funciona?,0.8,adequada,"Olá! Compreendo a sua situação. Se o pagamento foi processado, mas o carregador não iniciou o funcionamento, o problema pode estar relacionado a uma falha de comunicação entre o sistema de pagamento e o equipamento, ou a um travamento temporário no terminal.
 
-**Soluções recomendadas (em ordem de menor risco):**
-1. Aguarde até 3 minutos, pois pode haver uma latência na validação do pagamento.
-2. Desconecte o cabo do veículo, aguarde alguns instantes e tente reconectar para reiniciar a leitura.
-3. Caso utilize o aplicativo, encerre a sessão manualmente e tente iniciá-la novamente.
+Para sua segurança e resolução do problema, recomendo seguir estes passos:
 
-Se o problema persistir, recomendo utilizar o **Posto Shopping Tamboré** ou o **Posto Ipiranga**, que estão com alta disponibilidade e totalmente operacionais no momento.
+1. **Verifique a conexão do cabo:** Certifique-se de que o conector está firmemente encaixado na entrada do veículo.
+2. **Aguarde a sincronização:** Em alguns casos, a liberação do equipamento pode levar alguns instantes após a confirmação do pagamento.
+3. **Utilize outro carregador:** Como o equipamento atual não está respondendo, recomendo utilizar um dos nossos postos disponíveis no momento, onde o sistema está operando normalmente:
+   - Posto Shopping Tamboré (Carregador 31)
+   - Posto do Aeroporto (Carregador 29)
+   - Posto Ipiranga (Carregadores 13 ou 99)
+   - Posto do Villa Lobos (Carregador 58)
 
-Registrei este evento em nosso sistema para análise técnica e verificação do gateway de pagamento. Estou à disposição caso precise de mais auxílio."
-4,"O carregador não reconheceu meu veículo, o que eu faço?",0.5,parcialmente adequada,"Olá! 
+Caso o problema persista, entre em contanto com o suporte técnico."
+4,"O carregador não reconheceu meu veículo, o que eu faço?",0.75,adequada,"Compreendo a situação. Quando o carregador não reconhece o veículo, o problema pode estar relacionado a uma falha de comunicação entre o conector e o sistema do automóvel ou a um erro na autenticação local do dispositivo.
 
-Identifiquei uma falha onde o carregador não estabeleceu comunicação ou não reconheceu o seu veículo.
+Para resolver este problema e garantir o carregamento do seu veículo, siga estes passos:
 
-**Gravidade:** Média (falha de comunicação entre o hardware e o veículo).
+1.  **Procedimento de Segurança:** Desconecte o cabo tanto do carregador quanto do veículo. Aguarde cerca de 30 segundos e verifique se não há obstruções, sujeira ou danos visíveis nos pinos do conector.
+2.  **Nova Tentativa:** Reconecte o cabo firmemente, certificando-se de que o encaixe esteja completo em ambas as pontas. Muitas vezes, um encaixe parcial impede o reconhecimento do protocolo de comunicação.
+3.  **Troca de Equipamento:** Se a falha persistir após uma nova tentativa, o problema pode ser específico do conector ou do carregador em uso. Recomendo que você verifique em um de nossos pontos de alta performance disponíveis:
+    *   **Carregador 13 (Posto Villa Lobos):** 50kW de capacidade.
+    *   **Carregador 47 (Posto do Aeroporto):** 49kW de capacidade.
 
-**Possíveis causas:**
-1. Mau contato ou encaixe incompleto do conector na entrada do veículo.
-2. Sujeira, umidade ou obstrução nos pinos de conexão.
-3. Falha temporária no handshake de dados (protocolo de comunicação) entre o carregador e o sistema do veículo.
+**Importante:** Evite o **Carregador 63**, pois ele está ocupado e apresenta instabilidade no momento.
 
-**Soluções recomendadas (em ordem de menor risco):**
-1. Desconecte o cabo com cuidado, verifique se há poeira ou obstrução nos terminais e reinsira firmemente na tomada do veículo.
-2. Certifique-se de que o veículo está totalmente desligado e com o câmbio em modo Park (P) antes de iniciar a conexão.
-3. Se o problema persistir, tente realizar a recarga em outro posto de nossa rede.
-
-No momento, recomendo o **Posto Shopping Tamboré** ou o **Posto Ipiranga**, que contam com carregadores totalmente livres e operacionais. Evite no momento o Posto Villa Lobos, pois identificamos uma falha semelhante por lá.
-
-Registrei este evento em nosso sistema para análise técnica. Como posso ajudar mais?"
+Se, ao trocar para um dos carregadores recomendados, o erro ainda persistir, por favor, me informe qual é o modelo do seu veículo e a mensagem exata exibida no painel. Isso me ajudará a registrar o evento em nosso sistema e realizar um diagnóstico mais preciso."

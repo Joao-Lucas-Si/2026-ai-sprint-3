@@ -13,6 +13,7 @@ from textual.messages import Layout
 from textual.screen import Screen
 from textual.widgets import DataTable, Header, Label
 
+from src.ai.engine.memory import contar_tokens
 from src.ai.client.instancia import instanciarAi
 from src.ai.engine.ai_engine import AiEngine
 
@@ -74,6 +75,7 @@ class TesteResultado(TypedDict):
     resposta: str
     pergunta: str
     acuracia: float
+    # tokens: float
 
 class ModelResultados(TypedDict):
     resultado: list[TesteResultado]
@@ -108,6 +110,7 @@ def testar(*, adicionar_resultado: Callable[[TesteResultado], None], mostrar_tes
             "resposta": resposta,
             "acuracia": acuracia,
             "estado": estado,
+            # "tokens": contar_tokens(resposta)
         }
         adicionar_resultado(resultado)
         atual = i
@@ -136,7 +139,7 @@ class TesteTela(Screen):
                 )
                 
             data = pd.DataFrame(rows, columns=["pergunta", "acuracia", "estado", "resposta"])
-            data.to_csv("assets/relatorio.csv")
+            data.to_csv(f"assets/relatorio-{self.resultados[i]["model"]}.csv")
 
         def terminar():
             # sleep(2)
@@ -152,7 +155,7 @@ class TesteTela(Screen):
         async def testarModels():
             # sleep(10)
             # label.content = "testando"
-            models =  ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"] if  len(sys.argv) >= 3 and sys.argv[2] == "comparativo" else  ["gemini-3.1-flash-lite"]
+            models =  ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"] if  len(sys.argv) >= 3 and sys.argv[2] == "comparativo" else  ["gemini-3.5-flash-lite"]
             resultados: list[ModelResultados]  = []
             for i in range(len(models)):
                 modelResultado: ModelResultados = {
@@ -164,6 +167,7 @@ class TesteTela(Screen):
 
                 testar(adicionar_resultado=lambda resultado: modelResultado["resultado"].append(resultado), engine=AiEngine(models[i]), mostrar_teste=nomearTeste)
                 adicionar_resultado(modelResultado)
+                gerar_relatorio(i)
             terminar()
 
         # loop =get_running_loop()
