@@ -1,9 +1,10 @@
 from asyncio import create_task, get_running_loop, run
 from enum import Enum, EnumType
 import re
+import sys
 from threading import Thread
 from time import sleep
-from typing import TypedDict
+from typing import Callable, TypedDict
 import pandas as pd
 from textual.app import ComposeResult
 from textual.containers import Container
@@ -12,6 +13,7 @@ from textual.messages import Layout
 from textual.screen import Screen
 from textual.widgets import DataTable, Header, Label
 
+from src.ai.client.instancia import instanciarAi
 from src.ai.engine.ai_engine import AiEngine
 
 
@@ -73,21 +75,57 @@ class TesteResultado(TypedDict):
     pergunta: str
     acuracia: float
 
+class ModelResultados(TypedDict):
+    resultado: list[TesteResultado]
+    model: str
+
+atual = 0
+
+def testar(*, adicionar_resultado: Callable[[TesteResultado], None], mostrar_teste: Callable[[int, str], None], engine: AiEngine, ):
+    global atual
+   
+
+    for i, teste in enumerate(testes):
+        mostrar_teste(i, teste["input"])
+        resposta = engine.responder(teste["input"])
+        acuracia = 0
+
+        for palavra in teste["palavras_chaves"]:
+            if palavra in resposta:
+                acuracia += 1
+
+        acuracia = acuracia / len(teste["palavras_chaves"])
+        estado: TesteEstado
+        if acuracia >= 0.7:
+            estado = TesteEstado.ADEQUADA
+        elif acuracia >= 0.4:
+            estado = TesteEstado.PARCIAL
+        else:
+            estado = TesteEstado.INADEQUADA
+
+        resultado: TesteResultado = {
+            "pergunta": teste["input"],
+            "resposta": resposta,
+            "acuracia": acuracia,
+            "estado": estado,
+        }
+        adicionar_resultado(resultado)
+        atual = i
 
 class TesteTela(Screen):
     CSS_PATH="../../assets/css/teste-styles.tcss"
     completo = False
-    resultados: list[TesteResultado] = []
+    resultados: list[ModelResultados] = []
 
     def _on_mount(self, event: Mount) -> None:
         atual = 0
         engine = AiEngine()
         label = self.query_one(Label)
 
-        def gerar_relatorio():
+        def gerar_relatorio(i: int):
             rows = []
             
-            for resultado in self.resultados:
+            for resultado in self.resultados[i]["resultado"]:
                 rows.append(
                     [
                         resultado["pergunta"],
@@ -104,53 +142,33 @@ class TesteTela(Screen):
             # sleep(2)
             self.completo = True
             self.refresh(recompose=True)
-            gerar_relatorio()
 
-        def adicionar_resultado(resultado: TesteResultado):
+            gerar_relatorio(0)
+
+        def adicionar_resultado(resultado: ModelResultados):
            
             self.resultados.append(resultado)
             
-        def mostrar_teste():
-            label.content = f"teste {atual + 1} em execução"
-            label.refresh()
-
-        async def testar():
+        async def testarModels():
             # sleep(10)
-            nonlocal atual
-            label.content = "testando"
-
-            for i, teste in enumerate(testes):
-                mostrar_teste()
-                resposta = engine.responder(teste["input"])
-                acuracia = 0
-
-                for palavra in teste["palavras_chaves"]:
-                    if palavra in resposta:
-                        acuracia += 1
-
-                acuracia = acuracia / len(teste["palavras_chaves"])
-                estado: TesteEstado
-                if acuracia >= 0.7:
-                    estado = TesteEstado.ADEQUADA
-                elif acuracia >= 0.4:
-                    estado = TesteEstado.PARCIAL
-                else:
-                    estado = TesteEstado.INADEQUADA
-
-                resultado: TesteResultado = {
-                    "pergunta": teste["input"],
-                    "resposta": resposta,
-                    "acuracia": acuracia,
-                    "estado": estado,
+            # label.content = "testando"
+            models =  ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"] if  len(sys.argv) >= 3 and sys.argv[2] == "comparativo" else  ["gemini-3.1-flash-lite"]
+            resultados: list[ModelResultados]  = []
+            for i in range(len(models)):
+                modelResultado: ModelResultados = {
+                    "model": models[i],
+                    "resultado": []
                 }
-                adicionar_resultado(resultado)
-                atual = i
+                def nomearTeste(j: int, teste: str):
+                    label.content = f"modelo {models[i]} respondendo {j + 1}º teste(\"{teste}\")"
 
+                testar(adicionar_resultado=lambda resultado: modelResultado["resultado"].append(resultado), engine=AiEngine(models[i]), mostrar_teste=nomearTeste)
+                adicionar_resultado(modelResultado)
             terminar()
 
         # loop =get_running_loop()
         # loop.create_task(testar())
-        self.run_worker(testar(), start=True, thread=True)
+        self.run_worker(testarModels(), start=True, thread=True)
 
     def quebraLinhas(self, texto: str) -> list[str]:
         linhas = [""]
@@ -165,21 +183,23 @@ class TesteTela(Screen):
 
     def compose(self) -> ComposeResult:
         yield Header()
+
         if self.completo:
-            tabela = DataTable()
+            for model in self.resultados:
+                yield Label(model["model"], )
+                tabela = DataTable()
 
-            tabela.add_columns("pergunta", "acuracia", "estado", "resposta")
-
-            for resultado in self.resultados:
-                linhas = self.quebraLinhas(resultado["resposta"])
-                tabela.add_row(
-                    resultado["pergunta"],
-                    resultado["acuracia"],
-                    resultado["estado"].value,
-                    "\n".join(linhas),
-                    height=len(linhas),
-                )
-            yield tabela
+                tabela.add_columns("pergunta", "acuracia", "estado", "resposta")
+                for resultado in model["resultado"]:
+                    linhas = self.quebraLinhas(resultado["resposta"])
+                    tabela.add_row(
+                        resultado["pergunta"],
+                        resultado["acuracia"],
+                        resultado["estado"].value,
+                        "\n".join(linhas),
+                        height=len(linhas),
+                    )
+                yield tabela
         else:
             with Container(id="container-teste"):
                 yield Label("aplicando os testes", )

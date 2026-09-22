@@ -13,6 +13,7 @@
 - textual
 - pydantic
 - google-genai
+- langchain
 - pandas
 - dotenv
 
@@ -90,43 +91,10 @@ antes de executar o projeto, primeiro é neccessário garantir que as depêndenc
 
 para uso com gemini, entre no google ai studio, crie uma conta, e procure gerar uma chave da api, sendo ela a padrão, ou uma criada junto a um projeto
 
-### ollama
-
-em caso de uso com ollama, é preciso ter ele em sua maquina, execute o comando referente, ou siga as instruções do [site oficial](https://ollama.com/download): 
-
-
-```bash
-# windows
-irm https://ollama.com/install.ps1 | iex
-
-#linux
-curl -fsSL https://ollama.com/install.sh | sh
-
-#macOs
-curl -fsSL https://ollama.com/install.sh | sh
-```
- 
-após ter o ollama em sua maquina, rode com o modelo preferido
-
-
-```base
-
-ollama run <modelo>
+com a ai pronta, crie um arquivo .env no diretório principal, e siga os arquivos de exemplos como .env.example
 
 ```
-
-
-com a ai pronta, crie um arquivo .env no diretório principal, e siga os arquivos de exemplos como .env.example.gemini ou .env.example.ollama.
-
-```
-# para usar gemini
-
 CHAVE_GEMINI=<sua chave de api do gemini>
-
-# para usar o ollama
-
-HOST=http://localhost:11434/
-MODEL=<seu modelo de prefêrencia>
 ```
 
 
@@ -154,6 +122,11 @@ python main.py
 modo teste
 ```
 python main.py --teste
+```
+
+dentro do modo teste há um modo alternativo, que é o modo comparativo, que pega dois modelos e executa os mesmos testes para cada um, para ativar esse modo, siga o código abaixo:
+```
+python main.py --teste comparativo
 ```
 
 

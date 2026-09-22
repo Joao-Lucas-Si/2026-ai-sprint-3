@@ -7,8 +7,8 @@ from src.ai.client.adapters.langchain_adapter import LangChainAdapter
 from src.ai.client.adapters.ai_adapter import AiAdapter
 
 
-def instanciarAi() -> AiAdapter:
-    return LangChainAdapter()
+def instanciarAi(model: str = "gemini-3.1-flash-lite") -> AiAdapter:
+    return LangChainAdapter(model)
     # if os.getenv("CHAVE_GEMINI"):
     #     return GeminiGenaiAdapter()
     # elif os.getenv("HOST") and os.getenv("MODEL"):

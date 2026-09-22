@@ -8,8 +8,8 @@ from src.schema import AnalisePostos, AnaliseResposta
 
 
 class AiEngine:
-    def __init__(self) -> None:
-        self.client = instanciarAi()
+    def __init__(self, model: str =  "gemini-3.1-flash-lite") -> None:
+        self.client = instanciarAi(model)
         self.memory = TokenMemory()
     def responder(self, prompt: str):
         guardrail = Input_Guardrail(prompt)

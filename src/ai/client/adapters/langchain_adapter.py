@@ -14,9 +14,9 @@ from langchain_classic.memory import ConversationTokenBufferMemory
 # from langchain_classic.runnables import 
 
 class LangChainAdapter(AiAdapter):
-    def __init__(self) -> None:
+    def __init__(self, model: str  = "gemini-3.1-flash-lite") -> None:
         self.model = ChatGoogleGenerativeAI(
-            model="gemini-3.1-flash-lite",
+            model=model,
             api_key=os.getenv("CHAVE_GEMINI"),
         )
         self.memory: BaseChatMemory = ConversationTokenBufferMemory(llm=self.model, max_token_limit=400)
