@@ -11,6 +11,7 @@ from src.screens.main_screen import TelaChat
 
 
 
+
 class Aplicativo(App):
     SCREENS={"chat": TelaChat, "teste": TesteTela}
     
@@ -26,11 +27,12 @@ class Aplicativo(App):
     #     yield
 
 def main():
-    try:
-        app = Aplicativo()
-        app.run()
-    except Exception as e:
-        print(e)
+    
+    # try:
+    #     app = Aplicativo()
+    #     app.run()
+    # except Exception as e:
+    #     print(e)
 
 if __name__ == "__main__":
     load_dotenv()

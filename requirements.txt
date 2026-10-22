@@ -9,3 +9,8 @@ langchain-ollama
 langchain-google-genai
 langchain_classic
 tiktoken
+streamlit
+gradio
+pymupdf
+chromadb
+ragas
