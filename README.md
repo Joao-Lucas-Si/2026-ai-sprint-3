@@ -35,6 +35,8 @@ para casos de uso com o ollama, basta ter ele instalado em sua maquina e escolhe
 
 ```
 └── 📁sprint 2
+    └── 📁evals
+        ├── ragas.py
     └── 📁assets
         └── 📁css # pasta para estilos usados pelo textual
             ├── styles.tcss
@@ -44,7 +46,7 @@ para casos de uso com o ollama, basta ter ele instalado em sua maquina e escolhe
                 ├── analise_pergunta.md # system prompt para analise e classificação da pergunta do usuário
                 ├── relatorio.md # system prompt para analise e relatorio dos postos disponiveis
                 ├── system_prompt.md # system prompt final, que se comunica com o usuário e se utiliza dos dados das outras duas ais
-            └── 📁v2 # prompts novos
+            └── 📁v2 # prompts da versão 2
                 └── 📁 analise # system prompt para analise e classificação da pergunta do usuário
                     ├── extra.md
                     ├── identidade.md
@@ -59,12 +61,27 @@ para casos de uso com o ollama, basta ter ele instalado em sua maquina e escolhe
                     ├── identidade.md
                     ├── regras.md
                 ├── base.md # prompt base usado como template
+            └── 📁v3 # prompts novos
+                └── 📁 analise # system prompt para analise e classificação da pergunta do usuário
+                    ├── extra.md
+                    ├── identidade.md
+                    ├── objetivo.md
+                    ├── regras.md
+                └── 📁 system_prompt  # system prompt final, que se comunica com o usuário e se utiliza dos dados das outras ais
+                    ├── extra.md
+                    ├── identidade.md
+                    ├── regras.md
+                ├── base.md # prompt base usado como template
         ├── relatorio.csv # arquivo com os resultados dos testes
         ├── relatorio-gemini-3.1-flash-lite.csv # arquivo com os resultados dos testes do modelo gemini 3.1 flash lite
         ├── relatorio-gemini-3.5-flash-lite.csv # arquivo com os resultados dos testes do modelo gemini 3.5 flash lite
     └── 📁docs # documentos
-        ├── relatorio.pdf # relatorio de evolução
+        ├── relatorio_evolucao.pdf # relatorio de evolução
         ├── relatorio_modelos.md # relatorio comparativo entre modelos
+        ├── relatorio_rag.md
+    └── 📁data
+        └── 📁knowledge_base
+            ├── BASE DE CONHECIMENTO TÉCNICA(RAG).pdf
     └── 📁src
         └── 📁ai # pasta para todos os códigos referentes a ai
             └── 📁client # pasta pata criação de um cliente de comunicação com a ai
@@ -73,10 +90,18 @@ para casos de uso com o ollama, basta ter ele instalado em sua maquina e escolhe
                     ├── gemini_genai_adapter.py # adaptador para gemini atráves da biblioteca google-genai
                     ├── gemini_requests_adapter.py # adaptador para gemini através de requests
                     ├── ollama_request.py # adptador para ollama
+                    ├── langchain_adapter.py
                 ├── instancia.py # instancia de ai, ele verifica a situação do env e escolher se o modelo será gemini ou ollama
             └── 📁engine
                 ├── ai_engine.py # classe para uso principal da ia, diferente do client, que são comunicações diretas e genericas, o engine implementa comunicação especifica para o objetivo do projeto e uso de multiplas ais em uma mesma respostas
                 ├── memory.py # gerenciamento de mémoria da ai
+            └── 📁rag # codigo para rags
+                ├── loader.py
+                ├── prompt_rag.py
+                ├── retriever.py
+                ├── vector_store.py
+                ├── embeddings.py
+                ├── chucking.py
             ├── evalutor.py
             ├── guardrails.py
         └── 📁screens # pasta para as telas do sistema
@@ -98,21 +123,21 @@ para casos de uso com o ollama, basta ter ele instalado em sua maquina e escolhe
 para rodar o projeto, primeiro é necessário clonar o projeto em sua maquina
 
 ```
-git clone https://github.com/Joao-Lucas-Si/sprint-2-ai.git
+git clone https://github.com/Joao-Lucas-Si/2026-ai-sprint-3.git
 ```
 
 após isso, entre na pasta criada
 
 ```
-cd sprint-2-ai
+cd 2026-ai-sprint-3
 
 ```
 
-antes de executar o projeto, primeiro é neccessário garantir que as depêndencias de ai se encontram funcionando, siga as intruções de acordo com sua escolha de ai, o projeto foi feito pensando no gemini, mas o ollama é uma opção caso não seja possivel usar a api da google.
+antes de executar o projeto, primeiro é neccessário garantir que as depêndencias de ai se encontram funcionando.
 
 ### gemini
 
-para uso com gemini, entre no google ai studio, crie uma conta, e procure gerar uma chave da api, sendo ela a padrão, ou uma criada junto a um projeto
+para uso do gemini, entre no google ai studio, crie uma conta, e procure gerar uma chave da api, sendo ela a padrão, ou uma criada junto a um projeto
 
 com a ai pronta, crie um arquivo .env no diretório principal, e siga os arquivos de exemplos como .env.example
 
@@ -138,19 +163,19 @@ rode o projeto python, há duas formas principais, rodar o arquivo diretamente a
 modo interação
 
 ```
-python main.py
+streamlit run main.py
 ```
 
 modo teste
 
 ```
-python main.py --teste
+python teste.py
 ```
 
 dentro do modo teste há um modo alternativo, que é o modo comparativo, que pega dois modelos e executa os mesmos testes para cada um, para ativar esse modo, siga o código abaixo:
 
 ```
-python main.py --teste comparativo
+python teste.py --comparativo
 ```
 
 ## Teste

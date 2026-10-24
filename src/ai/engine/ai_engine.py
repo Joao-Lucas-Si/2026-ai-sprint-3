@@ -18,11 +18,7 @@ class AiEngine:
         
         if len(guardrail.validar_input()) > 0:
             return "Pergunta rejeitada pelo sistemas"
-        #     "Tipo": "Duvida",
-        # "tema": "Pagamento",
-        # "Intencao_principal": "Aconselhar sobre o funcionamento do pagamento",
-        # "palavras_chaves": ["sistema","pagamento","efetuar"]
-        # "Resumo": "Usuario informa que não sabe como efetuar o pagamento"
+   
         classificacao = self.client.chamarDiretamente(
             prompt,
             
@@ -30,36 +26,11 @@ class AiEngine:
             formato=AnaliseResposta.model_json_schema(),
             mensagem_direta=prompt
         )
-        postosStr = "\n".join(
-            [
-                x.model_dump_json().replace("{", "\\{{").replace("}", "\\}}")
-                for x in exemplos()
-            ]
-        )
-        # return classificacao
-        prompt_relatorio = """
-[postos]
-{postosStr}
-[input do usuário]
-{prompt}
-        """
 
-        # return prompt_relatorio
-
-        analise = self.client.chamarDiretamente(
-            prompt_relatorio,
-            system="relatorio",
-            historico=self.memory.chat_message(),
-            dados={"postosStr": postosStr, "prompt": prompt},
-            formato=AnalisePostos.model_json_schema(),
-            mensagem_direta=prompt
-        )
 
         prompt_final = """
 [classificação]
 {classificacao}
-[analise]
-{analise}
 
 [input do usuário]
 {prompt}
@@ -70,7 +41,7 @@ class AiEngine:
             historico=self.memory.chat_message(),
             dados={
                 "classificacao": classificacao.replace("{", "\\{{").replace("}", "\\}}"),
-                "analise": analise.replace("{", "\\{{").replace("}", "\\}}"),
+                # "analise": analise.replace("{", "\\{{").replace("}", "\\}}"),
                 "prompt": prompt,
             },
             mensagem_direta=prompt,

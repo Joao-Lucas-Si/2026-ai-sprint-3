@@ -18,63 +18,41 @@ from src.ai.client.instancia import instanciarAi
 from src.ai.engine.ai_engine import AiEngine
 
 
+
 class CasoTeste(TypedDict):
     input: str
-    palavras_chaves: list[str]
-
+    contexto: str
+    # palavras_chaves: list[str]
 
 testes: list[CasoTeste] = [
     {
-        "input": "Quais carregadores estão disponíveis neste momento?",
-        "palavras_chaves": ["disponivel", "carregador", "posto", "ocupado"],
+        "input": "quais são os passos para encerrar uma sessão",
+        "contexto": "Como encerrar uma sessão",
     },
     {
-        "input": "Minha recarga foi interrompida, o que aconteceu?",
-        "palavras_chaves": [
-            "recarga",
-            "limite",
-            "desconexão",
-            "verifique",
-            "suporte técnico",
-        ],
+        "input": "o que a tarifa pode incluir?",
+        "contexto": "Como interpretar o preço",
     },
     {
-        "input": "Como iniciar uma sessão de carregamento?",
-        "palavras_chaves": ["iniciar", "conecte", "cabo", "recarga", "carregador"],
+        "input":"o carregador esta disponivel, mas classificado como ocupado",
+        "contexto": "Carregador disponível, mas ocupado",
     },
     {
-        "input": "Meu pagamento foi feito mas o carregador não funciona?",
-        "palavras_chaves": [
-            "pagamento",
-            "verifique",
-            "conectado",
-            "problema",
-            "suporte técnico",
-        ],
+        "input": "quais os sinais de um cabo danificado?",
+        "contexto": "Cabo ou conector danificado",
     },
     {
-        "input": "O carregador não reconheceu meu veículo, o que eu faço?",
-        "palavras_chaves": [
-            "compatibilidade",
-            "verifique",
-            "problema",
-            "suporte técnico",
-        ],
-    },
+        "input": "minha sessão foi interrompida",
+        "contexto": "A sessão foi interrompida inesperadamente",
+    }
 ]
 
-
-class TesteEstado(Enum):
-    ADEQUADA = "adequada"
-    PARCIAL = "parcialmente adequada"
-    INADEQUADA = "inadequada"
-
-
 class TesteResultado(TypedDict):
-    estado: TesteEstado
+    # estado: TesteEstado
     resposta: str
     pergunta: str
-    acuracia: float
+    relevancia: float
+    fidelidade: float
     # tokens: float
 
 class ModelResultados(TypedDict):
@@ -109,7 +87,6 @@ def testar(*, adicionar_resultado: Callable[[TesteResultado], None], mostrar_tes
             "pergunta": teste["input"],
             "resposta": resposta,
             "acuracia": acuracia,
-            "estado": estado,
             # "tokens": contar_tokens(resposta)
         }
         adicionar_resultado(resultado)
@@ -155,7 +132,7 @@ class TesteTela(Screen):
         async def testarModels():
             # sleep(10)
             # label.content = "testando"
-            models =  ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"] if  len(sys.argv) >= 3 and sys.argv[2] == "comparativo" else  ["gemini-3.5-flash-lite"]
+            models =  ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"] if  len(sys.argv) >= 2 and sys.argv[1] == "--comparativo" else  ["gemini-3.5-flash-lite"]
             resultados: list[ModelResultados]  = []
             for i in range(len(models)):
                 modelResultado: ModelResultados = {

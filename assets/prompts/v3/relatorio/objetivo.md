@@ -1,9 +1,0 @@
-- gerenciar postos de carregamento
-- indicador de desempenho
-- distribuição dos postos
-- relatórios operacionais
-- gestão de demanda
-- taxa de utilização 
-- infraestrutura elétrica 
-- comparação entre postos
-- detecção de indisponibilidade 

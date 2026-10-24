@@ -14,10 +14,10 @@ class AiAdapter(ABC):
 
     @property
     def base_system_prompt(self):
-        return open("assets/prompts/v2/base.md").read()
+        return open("assets/prompts/v3/base.md").read()
         
     def obter_system_prompt_params(self, system: system_prompts) -> dict:
-        versao_atual = 2
+        versao_atual = 3
 
         params = ["identidade", "persona", "objetivo", "regras", "extra"]
 

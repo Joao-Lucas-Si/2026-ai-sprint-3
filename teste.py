@@ -14,15 +14,15 @@ from src.screens.main_screen import TelaChat
 
 
 class Aplicativo(App):
-    SCREENS={"chat": TelaChat, "teste": TesteTela}
+    SCREENS={ "teste": TesteTela}
     
     def on_mount(self):
-        if len(sys.argv) >= 2 and sys.argv[1] == "--teste":
-            self.push_screen("teste")
-        elif len(sys.argv) > 1:
-            raise Exception("parâmetros invalidos")
-        else:
-            self.push_screen("chat")
+        # if len(sys.argv) >= 2 and sys.argv[1] == "--comparativo":
+        self.push_screen("teste")
+        # elif len(sys.argv) > 1:
+        #     raise Exception("parâmetros invalidos")
+        # else:
+        #     self.push_screen("chat")
         self.theme = "catppuccin-mocha"
     # def compose(self) ->ComposeResult:
     #     yield

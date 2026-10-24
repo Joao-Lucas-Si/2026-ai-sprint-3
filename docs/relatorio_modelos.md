@@ -1,6 +1,6 @@
 | max tokens | temperature | top p |
 | :--------: | :---------: | :---: |
-|    300     |     0.4     |  0.5  |
+|    300     |      0      |  0.5  |
 
 # Resultados
 
