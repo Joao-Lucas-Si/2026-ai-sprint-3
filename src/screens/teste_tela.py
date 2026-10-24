@@ -13,6 +13,7 @@ from textual.messages import Layout
 from textual.screen import Screen
 from textual.widgets import DataTable, Header, Label
 
+from evals.ragas import avaliar_rag
 from src.ai.engine.memory import contar_tokens
 from src.ai.client.instancia import instanciarAi
 from src.ai.engine.ai_engine import AiEngine
@@ -34,8 +35,8 @@ testes: list[CasoTeste] = [
         "contexto": "Como interpretar o preço",
     },
     {
-        "input":"o carregador esta disponivel, mas classificado como ocupado",
-        "contexto": "Carregador disponível, mas ocupado",
+        "input":"o que cada padrão de cor presente na luz do equipamento quer dizer?",
+        "contexto": "As cores e os padrões luminosos",
     },
     {
         "input": "quais os sinais de um cabo danificado?",
@@ -53,6 +54,7 @@ class TesteResultado(TypedDict):
     pergunta: str
     relevancia: float
     fidelidade: float
+    contexto: str
     # tokens: float
 
 class ModelResultados(TypedDict):
@@ -67,26 +69,15 @@ def testar(*, adicionar_resultado: Callable[[TesteResultado], None], mostrar_tes
 
     for i, teste in enumerate(testes):
         mostrar_teste(i, teste["input"])
-        resposta = engine.responder(teste["input"])
-        acuracia = 0
-
-        for palavra in teste["palavras_chaves"]:
-            if palavra in resposta:
-                acuracia += 1
-
-        acuracia = acuracia / len(teste["palavras_chaves"])
-        estado: TesteEstado
-        if acuracia >= 0.7:
-            estado = TesteEstado.ADEQUADA
-        elif acuracia >= 0.4:
-            estado = TesteEstado.PARCIAL
-        else:
-            estado = TesteEstado.INADEQUADA
-
+        
+        avaliado = avaliar_rag(teste["input"], teste["contexto"], engine)
+        
         resultado: TesteResultado = {
             "pergunta": teste["input"],
-            "resposta": resposta,
-            "acuracia": acuracia,
+            "relevancia": avaliado[0]["relevancia"],
+            "fidelidade": avaliado[0]["fidelidade"],
+            "contexto": avaliado[0]["contexto"],
+            "resposta": avaliado[0]["resposta"]
             # "tokens": contar_tokens(resposta)
         }
         adicionar_resultado(resultado)
@@ -109,13 +100,13 @@ class TesteTela(Screen):
                 rows.append(
                     [
                         resultado["pergunta"],
-                        resultado["acuracia"],
-                        resultado["estado"].value,
+                        resultado["relevancia"],
+                        resultado["fidelidade"],
                         resultado["resposta"],
                     ]
                 )
                 
-            data = pd.DataFrame(rows, columns=["pergunta", "acuracia", "estado", "resposta"])
+            data = pd.DataFrame(rows, columns=["pergunta", "relevancia", "fidelidade", "resposta"])
             data.to_csv(f"assets/relatorio-{self.resultados[i]["model"]}.csv")
 
         def terminar():
@@ -132,7 +123,7 @@ class TesteTela(Screen):
         async def testarModels():
             # sleep(10)
             # label.content = "testando"
-            models =  ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"] if  len(sys.argv) >= 2 and sys.argv[1] == "--comparativo" else  ["gemini-3.5-flash-lite"]
+            models =  ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"] if  len(sys.argv) >= 2 and sys.argv[1] == "--comparativo" else  ["gemini-3.1-flash-lite"]
             resultados: list[ModelResultados]  = []
             for i in range(len(models)):
                 modelResultado: ModelResultados = {
@@ -170,13 +161,15 @@ class TesteTela(Screen):
                 yield Label(model["model"], )
                 tabela = DataTable()
 
-                tabela.add_columns("pergunta", "acuracia", "estado", "resposta")
+                tabela.add_columns("pergunta", "answer_relevancy", "faithfulness", "resposta")
                 for resultado in model["resultado"]:
+                    #resultado["resposta"]
                     linhas = self.quebraLinhas(resultado["resposta"])
                     tabela.add_row(
                         resultado["pergunta"],
-                        resultado["acuracia"],
-                        resultado["estado"].value,
+                        resultado["relevancia"],
+                        resultado["fidelidade"],
+                        # resultado["estado"].value,
                         "\n".join(linhas),
                         height=len(linhas),
                     )

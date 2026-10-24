@@ -14,12 +14,16 @@ from src.rag.embeddings import embed
 from src.rag.retriever import rag_indexar
 from src.ai.engine.ai_engine import AiEngine
 
+def avaliar(model="gemini-3.1-flash-lite"):
+    from dotenv import load_dotenv
 
-def avaliar(model = "gemini-3.1-flash-lite"):
+    load_dotenv()
     retriever = rag_indexar()
     # Configurar o RAGAS para usar o Ollama (sem custo)
     print("avaliando")
-    ragas_llm = LangchainLLMWrapper(ChatOllama(model="gemma4:cloud", base_url="https://ollama.com", temperature=0))
+    ragas_llm = LangchainLLMWrapper(
+        ChatOllama(model="gemma4:cloud", base_url="https://ollama.com", temperature=0)
+    )
     ragas_embs = LangchainEmbeddingsWrapper(embed())
     faithfulness.llm = ragas_llm
     answer_relevancy.llm = ragas_llm
@@ -27,24 +31,85 @@ def avaliar(model = "gemini-3.1-flash-lite"):
 
     perguntas = [
         "quais são os passos para encerrar uma sessão",
-        "o que a tarifa pode incluir?",
-        "o carregador esta disponivel, mas classificado como ocupado",
-        "quais os sinais de um cabo danificado?",
-        "minha sessão foi interrompida",
+        # "o que a tarifa pode incluir?",
+        # "o carregador esta disponivel, mas classificado como ocupado",
+        # "quais os sinais de um cabo danificado?",
+        # "minha sessão foi interrompida",
     ]
     contextos = [
         "Como encerrar uma sessão",
-        "Como interpretar o preço",
-        "Carregador disponível, mas ocupado",
-        "Cabo ou conector danificado",
-        "A sessão foi interrompida inesperadamente",
+        # "Como interpretar o preço",
+        # "Carregador disponível, mas ocupado",
+        # "Cabo ou conector danificado",
+        # "A sessão foi interrompida inesperadamente",
     ]
     try:
         engine = AiEngine(model)
-        print("respondendo")
 
         def responder(j, i):
             print(f"executando teste - {i + 1}")
+            return engine.responder(j)
+
+        dados_avaliacao = {
+            "question": [*perguntas],
+            "answer": [responder(i, j) for j, i in enumerate(perguntas)],
+            "contexts": [
+                [d.page_content for d in retriever.invoke(c)] for c in contextos
+            ],
+        }
+        resultado = cast(
+            EvaluationResult,
+            evaluate(
+                Dataset.from_dict(dados_avaliacao),
+                metrics=[faithfulness, answer_relevancy],
+                run_config=RunConfig(timeout=2000 * 20),
+                # embeddings= ragas_embs,
+                # llm=ChatGoogleGenerativeAI(
+                #     model="gemini-3.1-flash-lite",
+                #     api_key=os.getenv("CHAVE_GEMINI"),
+                # )
+                # llm=ChatOllama(
+                #     model="gemma4:cloud",
+                #     base_url="https://ollama.com",
+                #     num_predict=250,
+                #     temperature=0,
+                # ),
+            ),
+        )
+        print(resultado.to_pandas())
+        # selecionados = resultado.to_pandas()[
+        #     ["user_input", "answer_relevancy", "faithfulness"]
+        # ]
+        # selecionados.rename(
+        #     mapper={
+        #         "user_input": "pergunta",
+        #         "answer_relevancy": "relevancia",
+        #         "faithfulness": "fidelidade",
+        #     }
+        # )
+        # print(selecionados)
+    except Exception as e:
+        print(e)
+
+
+def avaliar_rag(pergunta: str, contexto: str, engine: AiEngine):
+    retriever = rag_indexar()
+    # Configurar o RAGAS para usar o Ollama (sem custo)
+
+    ragas_llm = LangchainLLMWrapper(
+        ChatOllama(model="gemma4:cloud", base_url="https://ollama.com", temperature=0)
+    )
+    ragas_embs = LangchainEmbeddingsWrapper(embed())
+    faithfulness.llm = ragas_llm
+    answer_relevancy.llm = ragas_llm
+    answer_relevancy.embeddings = ragas_embs
+
+    perguntas = [pergunta]
+    contextos = [contexto]
+    try:
+        # engine = AiEngine(model)
+
+        def responder(j, i):
             return engine.responder(j)
 
         dados_avaliacao = {
@@ -60,26 +125,22 @@ def avaliar(model = "gemini-3.1-flash-lite"):
             evaluate(
                 Dataset.from_dict(dados_avaliacao),
                 metrics=[faithfulness, answer_relevancy],
-                run_config=RunConfig(timeout=2000 * 20)
-                # embeddings= ragas_embs,
-                # llm=ChatGoogleGenerativeAI(
-                #     model="gemini-3.1-flash-lite",
-                #     api_key=os.getenv("CHAVE_GEMINI"),
-                # )
-                # llm=ChatOllama(
-                #     model="gemma4:cloud",
-                #     base_url="https://ollama.com",
-                #     num_predict=250,
-                #     temperature=0,
-                # ),
+                run_config=RunConfig(timeout=2000 * 20),
+                
             ),
         )
-        selecionados = resultado.to_pandas()[["user_input", "answer_relevancy", "faithfulness"]]
-        selecionados.rename(mapper={
-            "user_input": "pergunta",
-            "answer_relevancy": "relevancia",
-            "faithfulness": "fidelidade"
-        })
-        print(selecionados)
+        selecionados = resultado.to_pandas()
+        renomeados = selecionados.rename(
+            columns={
+                "user_input": "pergunta",
+                "answer_relevancy": "relevancia",
+                "faithfulness": "fidelidade",
+                "retrieved_contexts": "contexto",
+                "response": "resposta"
+            },
+            
+        )
+        # print(selecionados.to_dict("records"))
+        return renomeados.to_dict("records")
     except Exception as e:
-        print(e)
+        return []

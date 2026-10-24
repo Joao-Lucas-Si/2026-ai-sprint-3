@@ -1,67 +1,66 @@
-,pergunta,acuracia,estado,resposta
-0,Quais carregadores estão disponíveis neste momento?,0.25,inadequada,"Olá! Sou o EnergyAI, assistente de suporte dos carregadores GoodWe.
+,pergunta,relevancia,fidelidade,resposta
+0,quais são os passos para encerrar uma sessão,,,"Olá! Sou a EnergyAI, sua assistente para os carregadores GoodWe.
 
-Com base nas informações atuais do sistema, estes são os carregadores disponíveis no momento:
+Com base nos dados disponíveis, os passos e verificações relacionados ao encerramento de uma sessão envolvem:
 
-* **Posto Shopping Tamboré - Carregador 4** (Capacidade: 31 kW)
-* **Posto Shopping Tamboré - Carregador 20** (Capacidade: 37 kW)
-* **Posto Ipiranga - Carregador 4** (Capacidade: 10 kW)
-* **Posto Ipiranga - Carregador 19** (Capacidade: 20 kW)
-* **Posto Ipiranga - Carregador 57** (Capacidade: 35 kW)
-* **Posto do Villa Lobos - Carregador 70** (Capacidade: 50 kW)
+1. Confirmar que a sessão foi efetivamente encerrada.
+2. Verificar se o veículo está destravado, conforme o manual do seu automóvel.
+3. Seguir o procedimento de liberação específico fornecido pelo fabricante do veículo.
+4. **Importante para a segurança:** Não torcer, puxar ou utilizar ferramentas para forçar a retirada do conector.
+5. Caso o conector continue preso, solicite suporte técnico humano. Se houver aquecimento anormal, fumaça ou sinais de dano, afaste-se imediatamente e acione a administração do estabelecimento.
+6. Se a sessão continuar ativa no aplicativo (o que pode ocorrer devido a um atraso de sincronização), registre o identificador da sessão, o horário da desconexão e o estado apresentado, e encaminhe para verificação.
 
-Caso precise de orientações para iniciar a recarga ou tenha alguma dúvida sobre o funcionamento, estou à disposição."
-1,"Minha recarga foi interrompida, o que aconteceu?",0.6,parcialmente adequada,"Olá! Sou o EnergyAI. Entendo que sua recarga foi interrompida inesperadamente e estou aqui para ajudar a identificar o motivo.
+*Fonte: BASE DE CONHECIMENTO TÉCNICA(RAG).pdf, pág. 5.*
 
-Como não possuo dados específicos sobre o erro exato gerado na sua sessão neste momento, a interrupção pode ter ocorrido por algumas causas comuns:
+Caso precise de mais assistência, recomendo contatar o suporte técnico humano."
+1,o que a tarifa pode incluir?,,,"Olá! Sou a EnergyAI, sua assistente para os carregadores GoodWe.
 
-1. **Conexão do cabo:** O cabo de carregamento pode não estar totalmente conectado ou travado corretamente no veículo ou no carregador.
-2. **Proteção do veículo:** O próprio sistema de gerenciamento da bateria do seu carro pode ter interrompido a carga por atingir o limite configurado ou por uma variação de temperatura.
-3. **Falha na comunicação (IoT):** Uma oscilação temporária na rede de comunicação entre o carregador e o sistema pode ter encerrado a sessão por segurança.
+Com base nos dados disponíveis, o cálculo do custo energético é feito multiplicando a energia consumida (em kWh) pela tarifa por kWh (por exemplo: 20 kWh × R$ 2,00/kWh = R$ 40,00). 
 
-**Sugestões de solução em ordem de menor risco:**
-1. Desconecte o cabo de carregamento do veículo e do carregador.
-2. Verifique se há algum sinal de sujeira ou obstrução nos conectores.
-3. Reconecte o cabo firmemente, certificando-se de que o travamento foi acionado.
-4. Tente iniciar a sessão novamente pelo sistema de pagamento ou aplicativo.
+No entanto, este cálculo base **não contempla taxas adicionais, tarifas mínimas ou outros componentes** que possam ser eventualmente aplicáveis.
 
-Caso o problema persista, recomendo que entre em contato com o nosso **suporte técnico humano** para uma verificação detalhada do equipamento."
-2,Como iniciar uma sessão de carregamento?,0.8,adequada,"Olá! Para iniciar uma sessão de carregamento nos nossos postos GoodWe, siga o procedimento abaixo de forma segura:
+*Fonte: BASE DE CONHECIMENTO TÉCNICA(RAG).pdf, pág. 6.*
 
-1. **Escolha um carregador disponível:** No momento, temos ótimas opções livres, como os carregadores no Shopping Tamboré, Posto Ipiranga e Posto do Villa Lobos.
-2. **Conecte o cabo:** Estacione corretamente, desligue o veículo e insira o cabo de carregamento firmemente na entrada do seu carro e no carregador, garantindo que esteja bem travado.
-3. **Inicie a sessão:** Utilize o aplicativo ou o sistema de pagamento autorizado no posto para autenticar e iniciar o fluxo de energia.
-4. **Confirme o início:** Verifique no painel do carregador ou do veículo se a recarga foi iniciada com sucesso.
+Caso tenha dúvidas adicionais sobre cobranças ou precise de mais detalhes, recomendo contatar o suporte técnico humano."
+2,o que cada padrão de cor presente na luz do equipamento quer dizer?,,,"Olá! Sou a EnergyAI, sua assistente para os carregadores GoodWe.
 
-Se encontrar alguma dificuldade durante o processo ou se o carregador não iniciar a carga, por favor, entre em contato com o nosso **suporte técnico humano** para auxílio imediato."
-3,Meu pagamento foi feito mas o carregador não funciona?,0.6,parcialmente adequada,"Olá! Sou o EnergyAI. Lento pelo transtorno. Compreendo que você realizou o pagamento, mas o carregador não iniciou o funcionamento.
+Sobre o significado dos padrões de cor, as cores e os padrões luminosos variam conforme o fabricante e o modelo, e uma mesma cor pode ter significados diferentes em equipamentos distintos. Portanto, não se deve interpretar uma cor isoladamente como confirmação de funcionamento normal ou defeito.
 
-**Identificação do problema:** Falha na liberação do equipamento após a confirmação de pagamento.
-**Gravidade:** Moderada (impacta a experiência de uso, sem riscos elétricos imediatos relatados).
+Para realizar o diagnóstico correto, siga estes passos:
+1. Identifique o fabricante e o modelo do carregador.
+2. Consulte a etiqueta ou o manual específico do equipamento.
+3. Registre a cor, o padrão de piscamento e qualquer código exibido.
+4. Verifique se o aplicativo informa alguma falha.
+5. Caso não seja possível determinar o estado, encaminhe para análise técnica.
 
-**Possíveis causas (hipóteses):**
-1. **Atraso na comunicação (IoT):** A confirmação do pagamento pode não ter sido transmitida corretamente para o carregador devido a uma oscilação na rede.
-2. **Erro de conexão física:** O cabo pode não estar encaixado com a pressão correta para que o sistema libere o fluxo de energia.
-3. **Falha temporária no protocolo de autorização:** O OCPP pode ter sofrido uma falha momentânea de sincronização.
+*Fonte: BASE DE CONHECIMENTO TÉCNICA(RAG).pdf, pág. 7.*
 
-**Sugestões de solução em ordem de menor risco:**
-1. **Verifique o cabo:** Certifique-se de que o cabo está firmemente conectado tanto no veículo quanto no carregador.
-2. **Reinicie o processo de conexão:** Desconecte o cabo, aguarde alguns segundos e conecte-o firmemente novamente.
-3. **Consulte a alternativa:** Caso o equipamento continue sem responder, você pode utilizar um dos carregadores alternativos disponíveis no momento, como os outros terminais oper"
-4,"O carregador não reconheceu meu veículo, o que eu faço?",0.5,parcialmente adequada,"Olá! Sou o EnergyAI. Entendo que você está com problemas porque o carregador não reconheceu o seu veículo.
+Se precisar de auxílio adicional, recomendo contatar o suporte técnico humano."
+3,quais os sinais de um cabo danificado?,,,"Olá! Sou a EnergyAI, sua assistente para os carregadores GoodWe.
 
-**Identificação do problema:** Falha de comunicação ou acoplamento entre o carregador e o veículo.
-**Gravidade:** Baixa a moderada.
+Com base nos dados disponíveis, os sinais de risco que indicam um cabo ou conector danificado são:
 
-**Possíveis causas (hipóteses):**
-1. **Conexão incompleta:** O plugue do cabo pode não ter sido inserido até o final, impedindo o travamento mecânico e o contato elétrico necessário para a comunicação (Protocolo OCPP).
-2. **Sujo ou obstrução:** Presença de poeira ou resíduos nos pinos do conector.
-3. **Incompatibilidade momentânea:** O sistema de bordo do veículo pode não ter respondido ao sinal inicial do carregador.
+* Cortes no cabo;
+* Condutores expostos;
+* Pinos tortos;
+* Conector deformado;
+* Marcas de derretimento;
+* Aquecimento anormal.
 
-**Sugestões de solução em ordem de menor risco:**
-1. Desconecte o cabo do veículo e do carregador.
-2. Verifique se há sujeira nos conectores.
-3. Insira o cabo novamente, certificando-se de empurrá-lo com firmeza até ouvir ou sentir o travamento.
-4. Caso o erro persista, tente utilizar outro carregador disponível no sistema, como o **Posto Shopping Tamboré - Carregador 4** ou o **Posto Ipiranga - Carregador 4**.
+**Ação recomendada:** Não utilize o equipamento. Não toque na parte danificada nem tente realizar reparos. Informe imediatamente a administração do local e solicite intervenção técnica.
 
-Se o problema continuar em mais"
+*Fonte: BASE DE CONHECIMENTO TÉCNICA(RAG).pdf, pág. 7.*
+
+Caso identifique qualquer um desses sinais, recomendo contatar o suporte técnico humano."
+4,minha sessão foi interrompida,,,"Olá! Sou a EnergyAI, sua assistente para os carregadores GoodWe.
+
+Identifiquei que a sua sessão foi interrompida. 
+
+**Causas possíveis:**
+* Restrição do veículo
+* Condição térmica
+* Falha do equipamento
+
+Para garantir a sua segurança, evite tentativas repetidas e caso o problema persista, recomendo contatar o suporte técnico humano.
+
+*Fonte: BASE DE CONHECIMENTO TÉCNICA(RAG).pdf, pág. 10.*"

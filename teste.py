@@ -10,9 +10,6 @@ from src.rag.retriever import rag_indexar
 from src.screens.teste_tela import TesteTela
 from src.screens.main_screen import TelaChat
 
-
-
-
 class Aplicativo(App):
     SCREENS={ "teste": TesteTela}
     
