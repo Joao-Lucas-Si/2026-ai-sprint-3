@@ -33,7 +33,7 @@ class AiAdapter(ABC):
 
 
     @abstractmethod
-    def chamarDiretamente(self, prompt: str,historico: list[Mensagem] = [],  system: system_prompts="system_prompt",  formato: Optional[dict] = None, dados: dict = {}) -> str:
+    def chamarDiretamente(self, prompt: str,historico: list[Mensagem] = [],  system: system_prompts="system_prompt",  formato: Optional[dict] = None, dados: dict = {}, *, mensagem_direta: str, usar_context: bool = False) -> str:
         pass
     
     

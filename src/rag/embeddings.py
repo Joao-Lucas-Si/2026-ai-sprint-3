@@ -1,4 +1,4 @@
-from langchain_classic.embeddings import OllamaEmbeddings
+from langchain_ollama.embeddings import OllamaEmbeddings
 
 
 def embed():

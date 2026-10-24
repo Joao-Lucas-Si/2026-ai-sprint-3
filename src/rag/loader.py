@@ -1,4 +1,4 @@
-from langchain_classic.document_loaders import PyMuPDFLoader
+from langchain_community.document_loaders import PyMuPDFLoader
 
 
 def rag_load():
@@ -11,9 +11,10 @@ def rag_load():
     # return paginas
     # Carregar múltiplos PDFs de uma vez
     pdfs = [
-        "protocolos.pdf",
+        "BASE DE CONHECIMENTO TÉCNICA(RAG).pdf",
     ]
     paginas = []
     for pdf in pdfs:
         paginas.extend(PyMuPDFLoader(f"data/knowledge_base/{pdf}").load())
+    # print(paginas)
     return paginas

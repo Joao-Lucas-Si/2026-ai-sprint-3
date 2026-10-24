@@ -6,6 +6,7 @@ from typing import TextIO
 
 from textual.app import App, ComposeResult
 from dotenv import load_dotenv
+from src.rag.retriever import rag_indexar
 from src.screens.teste_tela import TesteTela
 from src.screens.main_screen import TelaChat
 
@@ -27,12 +28,12 @@ class Aplicativo(App):
     #     yield
 
 def main():
-    
-    # try:
-    #     app = Aplicativo()
-    #     app.run()
-    # except Exception as e:
-    #     print(e)
+    # rag_indexar()
+    try:
+        app = Aplicativo()
+        app.run()
+    except Exception as e:
+        print(e)
 
 if __name__ == "__main__":
     load_dotenv()

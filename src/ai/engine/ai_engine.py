@@ -1,5 +1,6 @@
 import json
 import sys
+from src.rag.retriever import rag_indexar
 from src.ai.engine.memory import TokenMemory
 from src.ai.guardrails import Input_Guardrail
 from src.ai.client.instancia import instanciarAi
@@ -14,6 +15,7 @@ class AiEngine:
     def responder(self, prompt: str):
         guardrail = Input_Guardrail(prompt)
         
+        
         if len(guardrail.validar_input()) > 0:
             return "Pergunta rejeitada pelo sistemas"
         #     "Tipo": "Duvida",
@@ -26,6 +28,7 @@ class AiEngine:
             
             system="analise_pergunta",
             formato=AnaliseResposta.model_json_schema(),
+            mensagem_direta=prompt
         )
         postosStr = "\n".join(
             [
@@ -48,7 +51,8 @@ class AiEngine:
             system="relatorio",
             historico=self.memory.chat_message(),
             dados={"postosStr": postosStr, "prompt": prompt},
-            formato=AnalisePostos.model_json_schema()
+            formato=AnalisePostos.model_json_schema(),
+            mensagem_direta=prompt
         )
 
         prompt_final = """
@@ -69,6 +73,8 @@ class AiEngine:
                 "analise": analise.replace("{", "\\{{").replace("}", "\\}}"),
                 "prompt": prompt,
             },
+            mensagem_direta=prompt,
+            usar_context=True
         )
         
         self.memory.save_context(Mensagem(prompt, Papel.USUARIO))
